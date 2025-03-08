@@ -1,7 +1,10 @@
 #author:  Kirubel Mekonnen
 # Date: 2021-09-26
 # Version: 1.0
-# Description: This program calculates the volume of a tire and determines the price of the tire based on the volume. The program also asks the user if they would like to purchase the tire and if so, asks for their phone number and writes the tire volume and phone number to a file. The program also writes the tire volume to a file if the user chooses not to purchase the tire. The program also prints the date and time of the calculation.
+# Description: This program calculates the volume of a tire and determines the price of the tire based on the volume. 
+# The program also asks the user if they would like to purchase the tire and if so, asks for their phone number and writes the tire volume and phone number to a file. 
+# The program also writes the tire volume to a file if the user chooses not to purchase the tire. 
+# The program also prints the date and time of the calculation.
 import math
 from datetime import datetime
 today = datetime.now()
