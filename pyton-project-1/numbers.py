@@ -1,0 +1,5 @@
+print("calculate numbers")
+n_apple=float(input("how many apple you have"))
+n_people=float(input("how many pepole are there"))
+print()
+print(n_apple/n_people)
