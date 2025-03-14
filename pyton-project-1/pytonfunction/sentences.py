@@ -183,7 +183,7 @@ def make_sentence(quantity, tense):
   quantity and tense of the verb will match the number
   and tense in the quantity and tense parameters.
   """
-  # Get a determiner, noun, and verb. indefinite article
+  # Get a determiner, noun, and verb. 
   determiner = get_determiner(quantity)
   determiner2 = get_determiner(quantity)
   adjective = get_adjective()
