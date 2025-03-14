@@ -1,12 +1,13 @@
+# Author:  Kirubel Mekonen Lemu
+# Date:  2021-03-14
+# Version: 1.0
+# Description: This program generates random sentences using functions. The sentences are composed of a determiner, a noun, a verb, and a prepositional phrase. The determiner and noun are randomly chosen to be singular or plural. The verb is randomly chosen to be past, present, or future tense. The prepositional phrase is composed of a preposition, a determiner, and a noun. The program also includes a function that returns a randomly chosen adverb and adjective. The program includes a main function that calls the make_sentence function six times with different parameters to generate six random sentences. The program uses the random module to randomly choose words from lists of determiners, nouns, verbs, prepositions, adverbs, and adjectives
+# The program uses the random module to randomly choose words from lists of determiners, nouns, verbs, prepositions, adverbs, and adjectives.
+# The program includes a main function that calls the make_sentence function six times with different parameters to generate six random sentences.
+# The program includes a function that returns a randomly chosen adverb and adjective.# The program includes a function that returns a randomly chosen adverb and adjective.
+# The program also identifies if the indefinite article preceds an adjective that starts with a vowel.
+# The program outputs six random sentences with different parameters having tow proposition phrases.
 import random
-# List of words
-#words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"]
-#word = random.choice(words)
-#cap_word = word.capitalize()
-#sentence = f"The word is {cap_word}."
-#print(sentence)
-
-
 
 def get_determiner(quantity):
   """Return a randomly chosen determiner. A determiner is
