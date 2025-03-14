@@ -182,16 +182,35 @@ def make_sentence(quantity, tense):
   quantity and tense of the verb will match the number
   and tense in the quantity and tense parameters.
   """
-  # Get a determiner, noun, and verb.
+  # Get a determiner, noun, and verb. indefinite article
   determiner = get_determiner(quantity)
+  determiner2 = get_determiner(quantity)
+  adjective = get_adjective()
+  adjective2 = get_adjective()
+  # this condition is to check if the indefinite article preceds an adjective starts with a vowel
+  if determiner == "a":
+      if adjective[0] in "aeiou":
+          determiner = "an"
+      else:
+          determiner = "a"
+      
+  if determiner2 == "a":
+      if adjective2[0] in "aeiou":
+          determiner2 = "an"
+      else:
+          determiner2 = "a"    
+      
   noun = get_noun(quantity)
   noun2 = get_noun(quantity)
   verb = get_verb(quantity, tense)
+  adverb = get_adverb()
+  
+  
   prepositional_phrase = get_prepositional_phrase(quantity)
   prepositional_phrase2 = get_prepositional_phrase(quantity)
   # Build and return a sentence.
   #sentence = f"{determiner.capitalize()} {noun} {verb} {prepositional_phrase}."
-  sentence = f"{determiner.capitalize()} {get_adjective()} {noun} {prepositional_phrase} {get_adverb()} {verb} {determiner} {get_adjective()} {noun2} {prepositional_phrase2}."
+  sentence = f"{determiner.capitalize()} {adjective} {noun} {prepositional_phrase} {adverb} {verb} {determiner2} {adjective2} {noun2} {prepositional_phrase2}."
   return sentence
 
 def main():
