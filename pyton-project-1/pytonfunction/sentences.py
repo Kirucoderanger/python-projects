@@ -94,6 +94,48 @@ def get_verb(quantity, tense):
   word = random.choice(words)
   return word
 
+def get_adverb():
+    """Return a randomly chosen adverb
+    from this list of adverbs:
+    haphazardly, erratically, haphazard, anyhow, irregularly, aimlessly, anywise, desultorily,
+    helter-skelter, willy-nilly, hit or miss, at random, anyway, carelessly, every which way, 
+    all over the place, any which way, hit-or-miss, unevenly, 
+    eccentrically, inconstantly, capriciously, accidentally, casually, higgledy
+    quickly, softly, quietly, loudly, slowly, rapidly, suddenly, unexpectedly,
+    gently, carefully, carelessly, cautiously, dangerously, easily, fast, hard,
+    hastily, immediately, lazily, noisily, politely, quickly, quietly, rapidly,
+    reluctantly, safely, suddenly, suspiciously, unexpectedly, very, well, wisely
+    Return: a randomly chosen adverb.
+    """
+    # randomly choose and return an adverb
+    words = ["haphazardly", "erratically", "haphazard", "effortlessly", "anyhow", "gracefully", "brightly", "irregularly", "aimlessly", "anywise", "desultorily", "helter-skelter", "willy-nilly", "hit or miss", "at random", "anyway", "carelessly", "every which way", "all over the place", "any which way", "hit-or-miss", "unevenly", "eccentrically", "inconstantly", "capriciously", "accidentally", "casually", "higgledy", "quickly", "softly", "quietly", "loudly", "slowly", "rapidly", "suddenly", "unexpectedly", "gently", "carefully", "carelessly", "cautiously", "dangerously", "easily", "fast", "hard", "hastily", "immediately", "lazily", "noisily", "politely", "quickly", "quietly", "rapidly", "reluctantly", "safely", "suddenly", "suspiciously", "unexpectedly", "very", "well", "wisely"]
+    word = random.choice(words)
+    return word
+def get_adjective():
+    """Return a randomly chosen adjective
+    from this list of adjectives:
+    aback, abaft, abandoned, abased, abashed, abasic, abatable, abatic, abaxial, abbatial,
+    abbreviated, abdicable, abdicant, abdicative, abdominal, abdominous, abducent, abducting,
+    abecedarian, aberdeen, aberrant, beautiful, witty, wicked ,confusing ,rich,new ,strange ,rocky, 
+    circular ,helpful ,competent ,smelly , stable,
+    grumpy ,devoted ,smart ,muscular ,graceful ,scary ,safe ,wooden ,sleepy ,tardy ,hungry , strange,
+    hopeful ,proud ,new ,dainty ,royal ,arrogant ,round ,efficient ,youthful ,cumbersome ,fickle , mild,
+    expensive ,small ,rude ,generous ,courageous ,zany ,thin ,round ,oval ,dark ,hot ,modern ,petite ,weary, 
+    old-fashioned, run-of-the-mill ,middle-of-the-road ,heavy-duty ,happy-go-lucky ,see-through ,easy-going ,big-time ,long-term, 
+    better, bigger, older, angrier, prettier, smarter, kinder, more determined, more interesting,
+    best ,biggest ,oldest ,prettiest ,happiest ,most striking, burnt ,depressed ,surprised ,misunderstood , annoying,
+    shocking ,time-consuming, this ,that ,these ,those ,what ,which ,whose ,your ,our ,its ,his ,a ,an ,some ,few ,dozen ,eight ,thousands
+    Return: a randomly chosen adjective.
+    """
+    # randomly choose and return an adjective
+    words = ["aback", "abaft", "abandoned", "abased", "abashed", "abasic", "abatable", "abatic", "abaxial", "abbatial", "abbreviated", "abdicable", "abdicant", "abdicative", "abdominal", "abdominous", "abducent", "abducting", "abecedarian", "aberdeen", "aberrant", "beautiful", "witty", "wicked", "confusing", "rich", "new", "strange", "rocky", "circular", "helpful", "competent", "smelly", "stable", "grumpy", "devoted", "smart", "muscular", "graceful", "scary", "safe", "wooden", "sleepy", "tardy", "hungry", "strange", "hopeful", "proud", "new", "dainty", "royal", "arrogant", "round", "efficient", "youthful", "cumbersome", "fickle", "mild", "expensive", "small", "rude", "generous", "courageous", "zany", "thin", "round", "oval", "dark", "hot", "modern", "petite", "weary", "old-fashioned", "run-of-the-mill", "middle-of-the-road", "heavy-duty", "happy-go-lucky", "see-through", "easy-going", "big-time", "long-term", "better", "bigger", "older", "angrier", "prettier", "smarter", "kinder", "more determined", "more interesting", "best", "biggest", "oldest", "prettiest", "happiest", "most striking", "burnt", "depressed", "surprised", "misunderstood", "annoying", "shocking", "time-consuming", "this", "that", "these", "those", "what", "which", "whose", "your", "our", "its", "his", "a", "an", "some", "few", "dozen", "eight", "thousands"]
+    word = random.choice(words)
+    return word
+   
+    
+    
+
+
 def get_preposition():
   """Return a randomly chosen preposition
   from this list of prepositions:
@@ -127,8 +169,8 @@ def get_prepositional_phrase(quantity):
   determiner = get_determiner(quantity)
   noun = get_noun(quantity)
   # Build and return a prepositional phrase.
-  phrase = f"{preposition} {determiner} {noun} "
-  return phrase
+  phrase = f"{preposition} {determiner} {noun}"
+  return phrase 
 
 
 
@@ -143,10 +185,13 @@ def make_sentence(quantity, tense):
   # Get a determiner, noun, and verb.
   determiner = get_determiner(quantity)
   noun = get_noun(quantity)
+  noun2 = get_noun(quantity)
   verb = get_verb(quantity, tense)
   prepositional_phrase = get_prepositional_phrase(quantity)
+  prepositional_phrase2 = get_prepositional_phrase(quantity)
   # Build and return a sentence.
-  sentence = f"{determiner.capitalize()} {noun} {verb} {prepositional_phrase}."
+  #sentence = f"{determiner.capitalize()} {noun} {verb} {prepositional_phrase}."
+  sentence = f"{determiner.capitalize()} {get_adjective()} {noun} {prepositional_phrase} {get_adverb()} {verb} {determiner} {get_adjective()} {noun2} {prepositional_phrase2}."
   return sentence
 
 def main():
