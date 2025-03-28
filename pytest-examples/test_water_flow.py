@@ -1,7 +1,7 @@
 from pytest import approx
 import pytest
 from water_flow import water_column_height, pressure_gain_from_water_height, pressure_loss_from_pipe \
-    , pressure_loss_from_fittings
+    , pressure_loss_from_fittings, reynolds_number, pressure_loss_from_pipe_reduction, kilopascals_to_psi
 def test_water_column_height():
     assert water_column_height(0.0, 0.0) == approx(0.0, abs=0.001)
     assert water_column_height(0.0, 10) == approx(7.5, abs=0.001)
@@ -38,6 +38,30 @@ def test_pressure_loss_from_fittings():
     assert pressure_loss_from_fittings(1.65, 2) == approx(-0.109, abs=0.001)
     assert pressure_loss_from_fittings(1.75, 2) == approx(-0.122, abs=0.001)
     assert pressure_loss_from_fittings(1.75, 5) == approx(-0.306, abs=0.001)
+    
+def test_reynolds_number():
+    assert reynolds_number(0.048692, 0.00) == approx(0, abs=1)
+    assert reynolds_number(0.048692, 1.65) == approx(80069, abs=1)
+    assert reynolds_number(0.048692, 1.75) == approx(84922, abs=1)
+    assert reynolds_number(0.286870, 1.65) == approx(471729, abs=1)
+    assert reynolds_number(0.286870, 1.75) == approx(500318, abs=1)
+    
+
+def test_pressure_loss_from_pipe_reduction():
+    assert pressure_loss_from_pipe_reduction(0.28687, 0.00, 1, 0.048692) == approx(0.000, abs=0.001)
+    assert pressure_loss_from_pipe_reduction(0.28687, 1.65, 471729, 0.048692) == approx(-163.744, abs=0.001)
+    assert pressure_loss_from_pipe_reduction(0.28687, 1.75, 500318, 0.048692) == approx(-184.182, abs=0.001)
+
+def test_kilopascals_to_psi():
+    assert kilopascals_to_psi(0.0) == approx(0.0, abs=0.001)
+    assert kilopascals_to_psi(1) == approx(0.145038, abs=0.001)
+    assert kilopascals_to_psi(101.325) == approx(14.696, abs=0.001)
+    assert kilopascals_to_psi(158.7) == approx(23.017, abs=0.001)
+    assert kilopascals_to_psi(200.0) == approx(29.007, abs=0.001)
+    assert kilopascals_to_psi(500.0) == approx(72.519, abs=0.001)
+    
+
+
        
     
 pytest.main(["-v", "--tb=line", "-rN", __file__])
