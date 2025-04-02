@@ -1,0 +1,20 @@
+Line 1: This is a sample line of text for testing purposes.
+Line 2: Another line to ensure the file has enough content.
+Line 3: Testing text files can be quite useful for debugging.
+Line 4: Here is yet another line to add to the file.
+Line 5: Text files are commonly used for storing data.
+Line 6: Python makes it easy to work with text files.
+Line 7: Reading and writing files is a fundamental skill.
+Line 8: This line is here to make the file longer.
+Line 9: Adding more lines helps simulate real-world scenarios.
+Line 10: Halfway through the 20 lines of text for testing.
+Line 11: Continuing to add more lines to the file.
+Line 12: Each line is unique to avoid repetition.
+Line 13: Testing with different lengths of text is helpful.
+Line 14: This is a simple example of a text file.
+Line 15: Files like this are often used in programming exercises.
+Line 16: The content here is purely for demonstration purposes.
+Line 17: Almost done with the 20 lines of text.
+Line 18: Just a few more lines to complete the file.
+Line 19: This is the second-to-last line in the file.
+Line 20: Finally, this is the last line of the test file.
