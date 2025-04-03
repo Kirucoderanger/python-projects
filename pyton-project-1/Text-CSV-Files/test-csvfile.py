@@ -162,7 +162,7 @@ def main():
     dentists_dict = read_dictionary("dentists.csv", PHONE_INDEX)
     # Print the dentists compound dictionary.
     print(dentists_dict)
-def read_dictionary(filename, key_column_index):
+def read_dictionary(csv_file_path_dentist, key_column_index):
     """Read the contents of a CSV file into a compound
     dictionary and return the dictionary.
     Parameters
