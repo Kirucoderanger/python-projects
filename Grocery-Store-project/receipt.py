@@ -60,9 +60,9 @@ def main():
     request = 0
     dictionary = read_dictionary("products.csv", product)
     
-    print("All Products")
-    print(dictionary) 
-    print("Requested Items")
+    #print("All Products")
+    #print(dictionary) 
+    #print("Requested Items")
     #for key, value in dictionary.items():
         #print(f"{key}: {value}")
     with open("request.csv", "rt") as csv_file:
@@ -71,8 +71,9 @@ def main():
         for row_list in reader:
             #row_list[0] = "ok"
             if row_list[0] in dictionary:
-                print(f"{dictionary[row_list[0]][1]}: {row_list[1]} @ {dictionary[row_list[0]][2]}")
+                #print(f"{dictionary[row_list[0]][1]}: {row_list[1]} @ {dictionary[row_list[0]][2]}")
                 #row_list.append(dictionary[row_list[0]])
+                print("")
             else:
                 row_list.append("Not Found")
             #print(row_list)
@@ -86,6 +87,12 @@ def main():
         sales_tax_rate = 0.06
 
         # Print ordered items and calculate totals
+        print("\n====== RECEIPT ======")
+        print("Inkom Emporium")
+        print("123 Main St, Anytown, USA")
+        print("Phone: (123) 456-7890")
+        print("Date: ", datetime.datetime.now().strftime("%a %b %e %H:%M:%S %Y"))
+        print("----------------------")
         print("Ordered Items:")
         with open("request.csv", "rt") as csv_file:
             reader = csv.reader(csv_file)
