@@ -1,8 +1,41 @@
+"""
+Created on Sat April 05 10:00:00 2025
+Author: Kirubel Mekonen
+Description: This script reads a CSV file containing product information and processes a shopping cart.
+It calculates the total price, applies discounts, and generates a receipt. It also includes functions to calculate the number of days until New Year and to generate a coupon for a random product.
+It handles errors related to file access and missing keys in the dictionary.
+It also includes a function to return the date and time for returning items.
+It uses the datetime module to get the current date and time, and formats it for display.
+It also includes a function to generate a coupon for a random product from the shopping cart.
+It uses the random module to select a random product from the cart.
+It reads the product information from a CSV file and stores it in a dictionary.
+It uses the csv module to read the CSV file and process the data.
+It includes error handling for file access and missing keys in the dictionary.
+It also includes functions to calculate the number of days until New Year and to return the date and time for returning items.
+"""
 import csv
 from datetime import datetime
 import datetime
 import random
 def read_dictionary(products, product):
+    """Read the contents of a CSV file into a compound
+    dictionary and return the dictionary.
+    Parameters
+    filename: the name of the CSV file to read.
+    key_column_index: the index of the column
+    to use as the keys in the dictionary.
+    Return: a compound dictionary that contains
+    the contents of the CSV file.
+    """
+    dictionary = {}
+    with open("products.csv", "rt") as csv_file:
+        reader = csv.reader(csv_file)
+        next(reader)
+        for row_list in reader:
+            key = row_list[product]
+            dictionary[key] = row_list
+    return dictionary
+def read_order_dictionary(products, product):
     """Read the contents of a CSV file into a compound
     dictionary and return the dictionary.
     Parameters
@@ -43,66 +76,66 @@ def main():
             else:
                 row_list.append("Not Found")
             #print(row_list)
-            try:
-                # Print store name
-                print("\nWelcome to Grocery Store!\n")
+    try:
+        # Print store name
+        #print("\nWelcome to Grocery Store!\n")
 
-                # Initialize variables
-                total_items = 0
-                subtotal = 0.0
-                sales_tax_rate = 0.06
+        # Initialize variables
+        total_items = 0
+        subtotal = 0.0
+        sales_tax_rate = 0.06
 
-                # Print ordered items and calculate totals
-                print("Ordered Items:")
-                with open("request.csv", "rt") as csv_file:
-                    reader = csv.reader(csv_file)
-                    next(reader)
-                    for row_list in reader:
-                        if row_list[0] in dictionary:
-                            product_name = dictionary[row_list[0]][1]
-                            quantity = int(row_list[1])
-                            price = float(dictionary[row_list[0]][2])
-                            total_price = quantity * price
-                            print(f"{product_name}: {quantity} @ ${price:.2f} = ${total_price:.2f}")
-                            total_items += quantity
-                            subtotal += total_price
-                        else:
-                            print(f"Item with ID {row_list[0]}: Not Found")
+        # Print ordered items and calculate totals
+        print("Ordered Items:")
+        with open("request.csv", "rt") as csv_file:
+            reader = csv.reader(csv_file)
+            next(reader)
+            for row_list in reader:
+                if row_list[0] in dictionary:
+                    product_name = dictionary[row_list[0]][1]
+                    quantity = int(row_list[1])
+                    price = float(dictionary[row_list[0]][2])
+                    total_price = quantity * price
+                    print(f"{product_name}: {quantity} @ ${price:.2f} = ${total_price:.2f}")
+                    total_items += quantity
+                    subtotal += total_price
+                else:
+                    print(f"Item with ID {row_list[0]}: Not Found")
 
-                # Calculate totals
-                sales_tax = subtotal * sales_tax_rate
-                total_due = subtotal + sales_tax
+        # Calculate totals
+        sales_tax = subtotal * sales_tax_rate
+        total_due = subtotal + sales_tax
 
-                # Print totals
-                print("\nSummary:")
-                print(f"Number of Items: {total_items}")
-                print(f"Subtotal: ${subtotal:.2f}")
-                print(f"Sales Tax (6%): ${sales_tax:.2f}")
-                print(f"Total Due: ${total_due:.2f}")
+        # Print totals
+        print("\nSummary:")
+        print(f"Number of Items: {total_items}")
+        print(f"Subtotal: ${subtotal:.2f}")
+        print(f"Sales Tax (6%): ${sales_tax:.2f}")
+        print(f"Total Due: ${total_due:.2f}")
 
-                # Print thank you message
-                print("\nThank you for shopping with us!")
+        # Print thank you message
+        #print("\nThank you for shopping with us!")
 
-                # Print current date and time
-                current_time = datetime.datetime.now()
-                print(f"\nDate and Time: {current_time:%Y-%m-%d %H:%M:%S}")
-                
-                
-                print("\n--- Additional Info ---")
-                print(f"🕒 Return by: {return_by_date()}")
-                print(f"🎉 {days_until_new_year()} days left until the New Year's Sale!")
-                print(get_random_product("request.csv" ))
-                    
-                print("Thank you for shopping with us!")
-                print("Have a great day!")
-                print("Goodbye!")
+        # Print current date and time
+        current_time = datetime.datetime.now()
+        print(f"\nDate and Time: {current_time:%a %b %e %H:%M:%S %Y}")
+        
+        
+        print("\n--- Additional Info ---")
+        print(f"🕒 Return by: {return_by_date()}")
+        print(f"🎉 {days_until_new_year()} days left until the New Year's Sale!")
+        print(get_random_product("request.csv" ))
+            
+        print("Thank you for shopping at the Inkom Emporium.")
+        print("Have a great day!")
+        print("Goodbye!")
 
-            except FileNotFoundError as e:
-                print(f"Error: {e}. Please ensure the file exists.")
-            except PermissionError as e:
-                print(f"Error: {e}. Please check your file permissions.")
-            except KeyError as e:
-                print(f"Error: Missing key {e} in the dictionary.")
+    except FileNotFoundError as e:
+        print(f"Error: {e}. Please ensure the file exists.")
+    except PermissionError as e:
+        print(f"Error: {e}. Please check your file permissions.")
+    except KeyError as e:
+        print(f"Error: Missing key {e} in the dictionary.")
                 
 def days_until_new_year():
     today = datetime.date.today()
@@ -111,7 +144,7 @@ def days_until_new_year():
 
 def return_by_date():
     return_date = datetime.datetime.now() + datetime.timedelta(days=30)
-    return return_date.replace(hour=21, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %I:%M %p')
+    return return_date.replace(hour=21, minute=0, second=0, microsecond=0).strftime("%a %b %e %H:%M:%S %Y")
 
 
 def get_random_product(csv_file):
@@ -129,13 +162,12 @@ def get_random_product(csv_file):
             row = {key.strip(): value.strip() for key, value in row.items()}
             my_dict[row[product]] = row  # Use 'id' as the key and store the rest of the row as the value
         random_key = random.choice(list(my_dict.keys()))
-        print(f"Random Key: {random_key}")
-        return f"💸 COUPON: 15% OFF your next {random_key.upper()}!"
+        #print(f"Random Key: {random_key}")
+        return f"💸 COUPON: 15% OFF on your next Purchase of {random_key.upper()} Product ID!"
     
 
     
-import datetime
-import random
+
 
 # Sample shopping cart: item_code -> (description, quantity, price)
 cart = {
@@ -144,8 +176,12 @@ cart = {
     "B205": ("Laptop Stand", 1, 30.00)
 }
 
+
 def apply_discount(cart):
+    #product = 0
+    """Apply discounts to the shopping cart and return the receipt lines and total price."""
     total = 0
+    
     receipt_lines = []
     for code, (desc, qty, price) in cart.items():
         if code == "D083":
@@ -178,7 +214,7 @@ def generate_coupon(cart):
 # Generate receipt
 lines, total_price = apply_discount(cart)
 
-print("====== RECEIPT ======")
+"""print("====== RECEIPT ======")
 for line in lines:
     print(line)
 print(f"TOTAL: ${total_price:.2f}")
@@ -187,7 +223,7 @@ print("\n--- Additional Info ---")
 print(f"🕒 Return by: {return_by_date()}")
 print(f"🎉 {days_until_new_year()} days left until the New Year's Sale!")
 print(generate_coupon(cart))
-print("======================")
+print("======================")"""
 
 
 
