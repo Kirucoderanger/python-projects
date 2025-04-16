@@ -1,0 +1,36 @@
+Second Report for a Student Chosen Project
+
+Do the following:
+
+1. In the table below, list the dates, amount of time spent, and
+description of the work that you did on your project. Follow the example
+that is in the first row of the table below. Include the time you spent
+doing any of the following:
+    a. discussing your project with your teacher, tutor, or fellow students
+    b. researching by reading articles and watching applicable videos
+    c. designing your project by drawing diagrams and other applicable documents
+    d. writing experimental code
+    d. writing code for your project
+    e. writing test functions
+    f. debugging your code
+    g. any other activity that helped you complete your project
+
+=============Example====================
+            Time Spent
+   Date       (hours)   Description of Work
+----------  ----------  -------------------------
+2025-04-11      4       writing the milestone program a greater help for the final program 
+2025-04-13      3       collect information about database connection and Chosen sqlite after some practical implimantion Include watching youtube videos and internet resources and AI support 
+2025-04-13      2       write a code for database connection and successful creating sqlite database and insert products 
+2025-04-14      4       write a code for the GUI interface
+2025-04-14      2       preparation to define functions and there structure 
+2015-04-16      4       write 6 fully operational functions
+2025-04-16      4       debugging program and defining the test functions
+
+=============Example====================
+
+
+
+2. In Canvas, submit this completed text file, your Python program, your
+Python test file, and any project data files such as .txt and .csv files and
+link to video walkthrough if needed.
