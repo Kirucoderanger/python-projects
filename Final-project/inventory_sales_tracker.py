@@ -167,6 +167,7 @@ def view_by_date():
                 txt_low.insert(END, f"{name} - Stock: {stock}")
         else:
             txt_low.insert(END, "✅ All items well stocked!")
+        return load_report
 
     # GUI Window
     win = Toplevel()
@@ -448,6 +449,53 @@ def export_report():
 
     Button(win, text="💾 Export as CSV", command=save_csv).pack(pady=5)
     Button(win, text="📄 Export as PDF", command=save_pdf).pack(pady=5)
+    
+def save_pdf():
+        conn = sqlite3.connect("store.db")
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT s.date, p.name, s.quantity, p.price, (s.quantity * p.price) as total
+            FROM sales s
+            JOIN products p ON s.product_id = p.id
+        """)
+        sales_data = cur.fetchall()
+        conn.close()
+
+        pdf_file = canvas.Canvas("sales_report.pdf", pagesize=letter)
+        pdf_file.setFont("Helvetica", 10)
+        pdf_file.drawString(30, 750, "Sales Report")
+
+        y_position = 730
+        pdf_file.drawString(30, y_position, "Date | Product Name | Quantity | Price | Total")
+        y_position -= 15
+
+        for row in sales_data:
+            date, name, qty, price, total = row
+            pdf_file.drawString(30, y_position, f"{date} | {name} | {qty} | ${price:.2f} | ${total:.2f}")
+            y_position -= 15
+
+        pdf_file.save()
+        messagebox.showinfo("PDF Export", "Sales data exported to 'sales_report.pdf'.")
+        
+def save_csv():
+        conn = sqlite3.connect("store.db")
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT s.date, p.name, s.quantity, p.price, (s.quantity * p.price) as total
+            FROM sales s
+            JOIN products p ON s.product_id = p.id
+        """)
+        sales_data = cur.fetchall()
+        conn.close()
+
+        with open("sales_report.csv", "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Date", "Product Name", "Quantity", "Price", "Total"])
+            writer.writerows(sales_data)
+
+        messagebox.showinfo("CSV Export", "Sales data exported to 'sales_report.csv'.")
+
+
 
 
 # ------------------------- MAIN -------------------------
